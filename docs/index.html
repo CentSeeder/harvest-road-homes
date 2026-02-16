@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harvest Road Homes — Brand Playbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Sacramento&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --parchment:#F7F3ED;--cream:#F0EAE0;--linen:#E8E0D4;--wheat:#D4C5A9;
+  --honey:#C8A96E;--amber:#A68A4B;--gold:#B59A54;--gold-light:#D4BB7A;
+  --sage:#8B9F7A;--sage-light:#A8B99A;--sage-dark:#6B7F5C;--moss:#5A6E4A;
+  --terracotta:#C4765A;--terracotta-light:#D4927A;--blush:#D4A5A5;--blush-light:#E4C3C3;
+  --charcoal:#2D2D2D;--charcoal-light:#5A5A5A;--espresso:#4A3728;
+  --wood:#8B7355;--ivory:#FDFBF7;
+
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-elegant:'Cormorant Garamond',Georgia,serif;
+  --font-body:'Lora',Georgia,serif;
+  --font-script:'Sacramento',cursive;
+
+  --section-pad:clamp(2rem,5vw,5rem) clamp(1.5rem,5vw,4rem);
+}
+
+html{scroll-behavior:smooth;scroll-snap-type:y proximity;overflow-x:hidden}
+body{font-family:var(--font-body);color:var(--charcoal);background:var(--parchment);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+
+/* ═══════════ GLOBAL TYPOGRAPHY ═══════════ */
+h1,h2,h3{font-family:var(--font-display);line-height:1.15}
+h2{font-size:clamp(2.2rem,5vw,4rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:clamp(1.1rem,2vw,1.4rem);font-weight:600}
+p{font-size:clamp(.88rem,1.1vw,1rem);line-height:1.75;color:var(--charcoal-light)}
+.label{font-family:var(--font-elegant);font-weight:500;font-size:.8rem;letter-spacing:.25em;
+  text-transform:uppercase;color:var(--honey)}
+.script{font-family:var(--font-script);color:var(--honey)}
+.elegant{font-family:var(--font-elegant)}
+.display{font-family:var(--font-display)}
+
+/* ═══════════ TEXTURE OVERLAY ═══════════ */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg width='6' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1' height='1' fill='%23000'/%3E%3C/svg%3E");
+  background-size:3px 3px}
+
+/* ═══════════ SCROLL PROGRESS ═══════════ */
+.scroll-progress{position:fixed;top:0;left:0;width:0;height:3px;z-index:10000;
+  background:linear-gradient(90deg,var(--sage),var(--honey),var(--terracotta));
+  transition:width .15s ease-out}
+
+/* ═══════════ FLOATING NAV ═══════════ */
+.side-nav{position:fixed;right:clamp(1rem,2vw,2.5rem);top:50%;transform:translateY(-50%);
+  z-index:9998;display:flex;flex-direction:column;gap:12px;align-items:center}
+.side-nav a{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--honey);
+  background:transparent;transition:all .4s cubic-bezier(.4,0,.2,1);cursor:pointer;
+  position:relative;text-decoration:none}
+.side-nav a.active{background:var(--honey);transform:scale(1.4)}
+.side-nav a:hover{background:var(--gold-light);transform:scale(1.2)}
+.side-nav a .tooltip{position:absolute;right:22px;top:50%;transform:translateY(-50%);
+  font-family:var(--font-elegant);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--honey);white-space:nowrap;opacity:0;transition:opacity .3s;pointer-events:none}
+.side-nav a:hover .tooltip{opacity:1}
+
+/* ═══════════ SECTIONS ═══════════ */
+section{min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:var(--section-pad);position:relative;overflow:hidden;scroll-snap-align:start}
+.section-inner{max-width:1100px;width:100%;position:relative;z-index:2}
+
+/* ═══════════ REVEAL ANIMATIONS ═══════════ */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.4,0,.2,1),
+  transform .9s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal.delay-1{transition-delay:.12s}
+.reveal.delay-2{transition-delay:.24s}
+.reveal.delay-3{transition-delay:.36s}
+.reveal.delay-4{transition-delay:.48s}
+.reveal.delay-5{transition-delay:.6s}
+.reveal.delay-6{transition-delay:.72s}
+.reveal.delay-7{transition-delay:.84s}
+.reveal.delay-8{transition-delay:.96s}
+.reveal-left{opacity:0;transform:translateX(-50px);transition:opacity .8s ease,transform .8s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(50px);transition:opacity .8s ease,transform .8s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(.9);transition:opacity .8s ease,transform .8s ease}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+
+/* ═══════════ DECORATIVE SVG ELEMENTS ═══════════ */
+.botanical{position:absolute;pointer-events:none;opacity:.07;z-index:1}
+.botanical-top-right{top:-20px;right:-40px;width:300px;height:300px}
+.botanical-bottom-left{bottom:-40px;left:-40px;width:350px;height:350px;transform:rotate(180deg)}
+
+/* ═══════════ DIVIDER ═══════════ */
+.divider{display:flex;align-items:center;gap:1.2rem;margin:2rem 0}
+.divider::before,.divider::after{content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,var(--wheat),transparent)}
+.divider svg{flex-shrink:0;opacity:.5}
+
+/* ═══════════ S1: HERO ═══════════ */
+.hero{min-height:100vh;background:linear-gradient(170deg,var(--ivory) 0%,var(--cream) 35%,var(--linen) 70%,var(--wheat) 100%);
+  flex-direction:column;text-align:center;position:relative}
+.hero::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 20%,rgba(200,169,110,.08) 0%,transparent 60%),
+  radial-gradient(ellipse at 70% 80%,rgba(139,159,122,.06) 0%,transparent 50%);pointer-events:none}
+.hero-brand{font-family:var(--font-display);font-size:clamp(3rem,7vw,6rem);font-weight:400;
+  letter-spacing:.02em;color:var(--charcoal);line-height:1}
+.hero-tagline{font-family:var(--font-script);font-size:clamp(1.8rem,3.5vw,3rem);color:var(--honey);
+  margin:.5rem 0 2rem}
+.hero-sub{font-family:var(--font-elegant);font-size:1.05rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--wood);margin-top:1.5rem}
+.hero-year{font-family:var(--font-elegant);font-size:.8rem;letter-spacing:.4em;color:var(--sage);margin-top:.5rem}
+.hero-line{width:180px;height:1px;background:linear-gradient(90deg,transparent,var(--honey),transparent);margin:1.5rem auto}
+.hero .corner{position:absolute;opacity:.08;pointer-events:none}
+.hero .corner-tl{top:3rem;left:3rem;width:100px;height:100px;border-top:2px solid var(--honey);border-left:2px solid var(--honey)}
+.hero .corner-br{bottom:3rem;right:3rem;width:100px;height:100px;border-bottom:2px solid var(--honey);border-right:2px solid var(--honey)}
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:.4}
+.scroll-hint span{font-family:var(--font-elegant);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--charcoal-light)}
+.scroll-arrow{width:20px;height:20px;border-right:1.5px solid var(--charcoal-light);
+  border-bottom:1.5px solid var(--charcoal-light);transform:rotate(45deg);
+  animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)}}
+
+/* ═══════════ S2: MANIFESTO ═══════════ */
+.manifesto{background:linear-gradient(160deg,var(--espresso) 0%,#3A2E22 40%,#2D2418 100%);
+  color:var(--cream);text-align:center}
+.manifesto h2{color:var(--cream);font-weight:400;font-style:italic;font-size:clamp(1.6rem,3.5vw,2.8rem);
+  line-height:1.6;max-width:800px;margin:0 auto}
+.manifesto h2 em{color:var(--honey);font-style:normal;font-weight:700}
+.manifesto .label{color:var(--wheat)}
+.manifesto p{color:var(--wheat);max-width:600px;margin:0 auto}
+
+/* ═══════════ S3: CURATOR ═══════════ */
+.curator{background:linear-gradient(135deg,var(--parchment),var(--cream))}
+.curator-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center;margin-top:2rem}
+.curator-text .lead{font-family:var(--font-elegant);font-size:1.2rem;font-style:italic;
+  color:var(--charcoal);line-height:1.8;margin-bottom:1.5rem}
+.curator-text p{margin-bottom:1rem}
+.brand-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.5rem}
+.tag{display:inline-block;padding:.3rem .8rem;border:1px solid var(--honey);border-radius:2rem;
+  font-family:var(--font-elegant);font-size:.78rem;letter-spacing:.08em;color:var(--honey);
+  transition:all .3s ease}
+.tag:hover{background:var(--honey);color:white}
+.curator-visual{display:flex;flex-direction:column;gap:1.5rem}
+.curator-quote{background:linear-gradient(135deg,rgba(200,169,110,.08),rgba(139,159,122,.06));
+  border-left:3px solid var(--honey);padding:1.8rem 2rem;border-radius:0 12px 12px 0;
+  font-family:var(--font-display);font-style:italic;font-size:1.1rem;line-height:1.8;color:var(--charcoal)}
+.is-not{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.is-card,.not-card{padding:1.2rem;border-radius:12px;font-size:.82rem;line-height:1.7}
+.is-card{background:rgba(139,159,122,.1);border:1px solid rgba(139,159,122,.25)}
+.is-card h4{color:var(--moss);font-family:var(--font-display);font-size:.95rem;margin-bottom:.5rem}
+.not-card{background:rgba(212,165,165,.08);border:1px solid rgba(212,165,165,.2)}
+.not-card h4{color:var(--terracotta);font-family:var(--font-display);font-size:.95rem;margin-bottom:.5rem}
+
+/* ═══════════ S4: OPPORTUNITY ═══════════ */
+.opportunity{background:linear-gradient(180deg,var(--cream),var(--linen))}
+.opp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
+.opp-card{background:white;border-radius:16px;padding:1.8rem;position:relative;overflow:hidden;
+  box-shadow:0 4px 24px rgba(0,0,0,.04);border:1px solid rgba(200,169,110,.1);
+  transition:transform .4s ease,box-shadow .4s ease}
+.opp-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+.opp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--sage),var(--honey))}
+.opp-card .stat{font-family:var(--font-display);font-size:2.5rem;font-weight:700;
+  color:var(--honey);line-height:1;margin:.8rem 0 .4rem}
+.opp-card h3{font-size:1rem;color:var(--charcoal);margin-bottom:.4rem}
+.opp-card p{font-size:.82rem;line-height:1.6}
+.opp-card .source{font-size:.68rem;color:var(--sage);margin-top:.8rem;font-style:italic;
+  font-family:var(--font-elegant)}
+.opp-insight{margin-top:2rem;padding:1.5rem 2rem;background:rgba(74,55,40,.04);
+  border-radius:12px;border-left:4px solid var(--honey);max-width:800px}
+.opp-insight p{font-size:.9rem;color:var(--charcoal)}
+.opp-insight strong{color:var(--honey)}
+
+/* ═══════════ S5: AUDIT ═══════════ */
+.audit{background:linear-gradient(160deg,var(--ivory),var(--cream))}
+.audit-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin:1.8rem 0 2rem}
+.stat-box{background:white;border-radius:14px;padding:1.5rem;text-align:center;
+  box-shadow:0 2px 16px rgba(0,0,0,.04);border:1px solid rgba(200,169,110,.08);
+  transition:transform .3s ease}
+.stat-box:hover{transform:translateY(-2px)}
+.stat-num{font-family:var(--font-display);font-size:2.4rem;font-weight:700;color:var(--honey);line-height:1}
+.stat-label{font-family:var(--font-elegant);font-size:.72rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--charcoal-light);margin-top:.3rem}
+.audit-cols{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.audit-col h3{font-size:1.05rem;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:2px solid}
+.working h3{color:var(--moss);border-color:var(--sage-light)}
+.needs-change h3{color:var(--terracotta);border-color:var(--terracotta-light)}
+.audit-item{display:flex;gap:.7rem;margin-bottom:.7rem;font-size:.85rem;line-height:1.6}
+.audit-icon{flex-shrink:0;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:.65rem;margin-top:.15rem}
+.working .audit-icon{background:rgba(139,159,122,.15);color:var(--moss)}
+.needs-change .audit-icon{background:rgba(196,118,90,.12);color:var(--terracotta)}
+
+/* ═══════════ S6: POSITIONING ═══════════ */
+.positioning{background:linear-gradient(135deg,var(--linen),var(--cream))}
+.pos-map{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+.pos-quadrant{padding:1.5rem;border-radius:16px;position:relative}
+.pos-quadrant h3{font-size:1rem;margin-bottom:.6rem}
+.pos-quadrant p{font-size:.82rem;line-height:1.6}
+.pos-quadrant ul{list-style:none;margin-top:.5rem}
+.pos-quadrant ul li{font-size:.8rem;color:var(--charcoal-light);padding:.25rem 0;
+  padding-left:1rem;position:relative}
+.pos-quadrant ul li::before{content:'›';position:absolute;left:0;color:var(--honey);font-weight:700}
+.q-hrh{background:linear-gradient(135deg,rgba(200,169,110,.12),rgba(139,159,122,.08));
+  border:2px solid var(--honey);grid-column:span 2}
+.q-hrh h3{color:var(--honey);font-size:1.15rem}
+.q-others{background:rgba(0,0,0,.02);border:1px solid rgba(0,0,0,.06)}
+.pos-statement{margin-top:2rem;text-align:center;padding:1.5rem;background:rgba(74,55,40,.03);
+  border-radius:12px}
+.pos-statement p{font-family:var(--font-display);font-size:1.1rem;color:var(--charcoal);
+  font-style:italic}
+.pos-statement strong{color:var(--honey)}
+
+/* ═══════════ S7: CONSUMER VALUE ═══════════ */
+.consumer-value{background:linear-gradient(160deg,var(--espresso),#3A2E22);color:var(--cream)}
+.cv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
+.cv-card{background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border-radius:16px;
+  padding:1.8rem;border:1px solid rgba(255,255,255,.08);transition:transform .3s ease,background .3s ease}
+.cv-card:hover{transform:translateY(-3px);background:rgba(255,255,255,.1)}
+.cv-icon{font-size:2rem;margin-bottom:.8rem;display:block}
+.cv-card h3{color:var(--wheat);font-size:1rem;margin-bottom:.5rem}
+.cv-card p{color:rgba(240,234,224,.7);font-size:.82rem;line-height:1.6}
+.cv-card .cv-hook{font-family:var(--font-elegant);font-size:.88rem;color:var(--honey);
+  font-style:italic;margin-top:.8rem;display:block;line-height:1.5}
+.consumer-value h2{color:var(--cream)}
+.consumer-value .label{color:var(--wheat)}
+
+/* ═══════════ S8: VISUAL IDENTITY ═══════════ */
+.visual-id{background:linear-gradient(180deg,var(--parchment),var(--cream));min-height:auto;padding-top:5rem;padding-bottom:5rem}
+.vi-palette{display:flex;gap:0;margin:2rem 0;border-radius:16px;overflow:hidden;
+  box-shadow:0 4px 24px rgba(0,0,0,.06)}
+.vi-swatch{flex:1;height:100px;display:flex;align-items:flex-end;padding:.6rem .8rem;
+  transition:flex .4s ease}
+.vi-swatch:hover{flex:1.5}
+.vi-swatch span{font-family:var(--font-elegant);font-size:.65rem;letter-spacing:.08em;
+  text-transform:uppercase;opacity:.8}
+.vi-typo{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;margin-top:2rem}
+.vi-font{padding:1.5rem;background:white;border-radius:14px;
+  box-shadow:0 2px 12px rgba(0,0,0,.04);text-align:center}
+.vi-font .sample{font-size:2rem;margin-bottom:.5rem;color:var(--charcoal)}
+.vi-font .name{font-family:var(--font-elegant);font-size:.75rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--charcoal-light)}
+.vi-font .use{font-size:.72rem;color:var(--sage);margin-top:.3rem}
+.vi-mood{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:2rem}
+.mood-word{text-align:center;padding:1rem;background:rgba(200,169,110,.05);border-radius:10px;
+  font-family:var(--font-display);font-size:1rem;font-style:italic;color:var(--charcoal);
+  border:1px solid rgba(200,169,110,.1);transition:all .3s ease}
+.mood-word:hover{background:rgba(200,169,110,.12);transform:scale(1.05)}
+
+/* ═══════════ S9: CONTENT PILLARS ═══════════ */
+.pillars{background:linear-gradient(135deg,var(--cream),var(--linen))}
+.pillar-row{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
+.pillar-card{display:grid;grid-template-columns:100px 1fr;gap:2rem;align-items:center;
+  padding:1.5rem 2rem;background:white;border-radius:16px;
+  box-shadow:0 2px 16px rgba(0,0,0,.03);border-left:5px solid var(--honey);
+  transition:transform .3s ease,box-shadow .3s ease}
+.pillar-card:hover{transform:translateX(4px);box-shadow:0 4px 24px rgba(0,0,0,.06)}
+.pillar-card:nth-child(2){border-color:var(--sage)}
+.pillar-card:nth-child(3){border-color:var(--terracotta)}
+.pillar-card:nth-child(4){border-color:var(--blush)}
+.pillar-card:nth-child(5){border-color:var(--espresso)}
+.pillar-pct{font-family:var(--font-display);font-size:2.5rem;font-weight:700;text-align:center;line-height:1}
+.pillar-card:nth-child(1) .pillar-pct{color:var(--honey)}
+.pillar-card:nth-child(2) .pillar-pct{color:var(--sage)}
+.pillar-card:nth-child(3) .pillar-pct{color:var(--terracotta)}
+.pillar-card:nth-child(4) .pillar-pct{color:var(--blush)}
+.pillar-card:nth-child(5) .pillar-pct{color:var(--espresso)}
+.pillar-name{font-family:var(--font-display);font-size:.85rem;font-weight:600;text-align:center;
+  color:var(--charcoal);margin-top:.2rem}
+.pillar-body h3{font-size:.95rem;margin-bottom:.3rem}
+.pillar-body p{font-size:.82rem;line-height:1.6}
+.pillar-body .hook{font-family:var(--font-elegant);font-size:.78rem;color:var(--honey);
+  font-style:italic;margin-top:.4rem}
+
+/* ═══════════ S10: PLATFORM STRATEGY ═══════════ */
+.platforms{background:linear-gradient(160deg,var(--ivory),var(--cream))}
+.platform-tabs{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+.platform-panel{padding:2rem;background:white;border-radius:16px;
+  box-shadow:0 4px 24px rgba(0,0,0,.04)}
+.platform-panel h3{font-size:1.3rem;margin-bottom:.3rem;display:flex;align-items:center;gap:.5rem}
+.platform-panel .platform-sub{font-family:var(--font-elegant);font-size:.82rem;
+  color:var(--charcoal-light);font-style:italic;margin-bottom:1.2rem}
+.algo-row{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.2rem}
+.algo-item{display:flex;align-items:center;gap:.8rem;padding:.6rem .8rem;
+  background:rgba(200,169,110,.04);border-radius:8px}
+.algo-item .algo-name{font-family:var(--font-display);font-weight:600;font-size:.88rem;
+  min-width:100px;color:var(--charcoal)}
+.algo-item p{font-size:.75rem;line-height:1.5;color:var(--charcoal-light)}
+.content-mix{display:flex;flex-direction:column;gap:.5rem}
+.mix-item{display:flex;align-items:center;gap:.6rem;font-size:.82rem}
+.mix-item .freq{font-family:var(--font-display);font-weight:600;min-width:90px;color:var(--honey)}
+.hook-list{display:flex;flex-direction:column;gap:.4rem;margin-top:1rem}
+.hook-item{font-size:.8rem;padding:.5rem .8rem;background:rgba(139,159,122,.06);
+  border-radius:8px;border-left:2px solid var(--sage);font-style:italic;color:var(--charcoal);line-height:1.5}
+.tt-types{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.2rem}
+.tt-type{display:flex;align-items:flex-start;gap:.8rem;padding:.6rem .8rem;
+  background:rgba(196,118,90,.04);border-radius:8px}
+.tt-type h4{font-family:var(--font-display);font-size:.88rem;min-width:120px;color:var(--charcoal)}
+.tt-type p{font-size:.75rem;color:var(--charcoal-light);line-height:1.5}
+.viral-badge{display:inline-block;padding:.15rem .5rem;border-radius:2rem;font-size:.6rem;
+  font-family:var(--font-elegant);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-left:.3rem}
+.viral-high{background:rgba(139,159,122,.15);color:var(--moss)}
+.viral-vhigh{background:rgba(200,169,110,.15);color:var(--amber)}
+
+/* ═══════════ S11: FIRST 30 DAYS ═══════════ */
+.thirty-days{background:linear-gradient(180deg,var(--cream),var(--linen))}
+.weeks-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:2rem}
+.week-card{background:white;border-radius:14px;padding:1.3rem;
+  box-shadow:0 2px 12px rgba(0,0,0,.04);transition:transform .3s ease}
+.week-card:hover{transform:translateY(-3px)}
+.week-card h4{font-family:var(--font-display);font-size:.95rem;font-weight:600;color:var(--honey);
+  margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:1px solid var(--linen)}
+.day-item{font-size:.72rem;color:var(--charcoal-light);padding:.3rem 0;line-height:1.5;
+  border-bottom:1px solid rgba(0,0,0,.03)}
+.day-item:last-child{border:none}
+.day-item strong{color:var(--charcoal);font-weight:600;display:inline-block;width:32px}
+
+/* ═══════════ S12: ROADMAP ═══════════ */
+.roadmap{background:linear-gradient(135deg,var(--linen),var(--cream))}
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;margin-top:2rem;position:relative}
+.timeline::before{content:'';position:absolute;top:48px;left:8%;right:8%;height:3px;
+  background:linear-gradient(90deg,var(--sage),var(--honey),var(--terracotta));border-radius:2px}
+.phase{text-align:center;position:relative}
+.phase-circle{width:32px;height:32px;border-radius:50%;margin:0 auto 1.2rem;position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:center;font-family:var(--font-display);
+  font-size:.85rem;font-weight:700;color:white}
+.phase:nth-child(1) .phase-circle{background:var(--sage)}
+.phase:nth-child(2) .phase-circle{background:var(--honey)}
+.phase:nth-child(3) .phase-circle{background:var(--terracotta)}
+.phase h3{font-size:1.15rem;margin-bottom:.3rem}
+.phase .period{font-family:var(--font-elegant);font-size:.8rem;color:var(--honey);letter-spacing:.1em}
+.phase .target{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--charcoal);margin:.5rem 0 .2rem}
+.phase .target-label{font-size:.72rem;color:var(--charcoal-light)}
+.phase-tasks{text-align:left;font-size:.78rem;color:var(--charcoal-light);line-height:1.8;
+  background:white;border-radius:12px;padding:1.2rem;margin-top:.8rem;
+  box-shadow:0 2px 8px rgba(0,0,0,.03)}
+
+/* ═══════════ S13: MONETIZATION ═══════════ */
+.monetization{background:linear-gradient(160deg,var(--parchment),var(--cream))}
+.money-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem}
+.money-card{background:white;border-radius:16px;padding:1.5rem;text-align:center;
+  box-shadow:0 2px 16px rgba(0,0,0,.04);border-top:4px solid var(--honey);
+  transition:transform .3s ease}
+.money-card:hover{transform:translateY(-3px)}
+.money-card h4{font-family:var(--font-display);font-size:.95rem;font-weight:600;margin-bottom:.2rem}
+.money-when{font-family:var(--font-elegant);font-size:.72rem;color:var(--sage);letter-spacing:.08em}
+.money-range{font-family:var(--font-display);font-size:1.6rem;font-weight:700;color:var(--honey);margin:.5rem 0 .3rem}
+.money-card p{font-size:.75rem;line-height:1.5}
+.money-note{margin-top:2rem;padding:1.5rem 2rem;background:rgba(139,159,122,.06);
+  border-radius:12px;border:1px solid rgba(139,159,122,.12);text-align:center}
+.money-note h4{font-family:var(--font-display);font-size:1rem;color:var(--moss);margin-bottom:.3rem}
+
+/* ═══════════ S14: SIGNATURE SERIES ═══════════ */
+.series{background:linear-gradient(135deg,var(--cream),var(--linen))}
+.series-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem}
+.series-card{background:white;border-radius:16px;padding:1.5rem;
+  box-shadow:0 2px 16px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);
+  transition:transform .4s ease,box-shadow .4s ease}
+.series-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.08)}
+.series-icon{font-size:1.8rem;margin-bottom:.6rem}
+.series-card h4{font-family:var(--font-display);font-size:1rem;font-weight:600;margin-bottom:.2rem}
+.series-freq{font-family:var(--font-elegant);font-size:.72rem;color:var(--honey);
+  letter-spacing:.08em;margin-bottom:.5rem}
+.series-card p{font-size:.78rem;line-height:1.6}
+
+/* ═══════════ S15: CLOSING ═══════════ */
+.closing{background:linear-gradient(160deg,var(--ivory) 0%,var(--cream) 40%,var(--linen) 100%);
+  text-align:center;flex-direction:column}
+.closing-quote{font-family:var(--font-display);font-weight:400;
+  font-size:clamp(1.6rem,3.5vw,2.6rem);line-height:1.6;color:var(--charcoal);max-width:750px;margin:0 auto}
+.closing-quote em{color:var(--honey);font-weight:600;font-style:normal}
+.closing-from{font-family:var(--font-script);font-size:2.5rem;color:var(--honey);margin:2rem 0 .5rem}
+.closing-sub{font-family:var(--font-elegant);font-style:italic;font-size:.95rem;color:var(--charcoal-light)}
+.closing-est{font-family:var(--font-elegant);font-size:.82rem;letter-spacing:.2em;
+  color:var(--wood);margin-top:2rem}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:900px){
+  .curator-grid,.pos-map,.platform-tabs{grid-template-columns:1fr}
+  .opp-grid,.cv-grid,.money-grid,.series-grid{grid-template-columns:1fr 1fr}
+  .audit-stats{grid-template-columns:repeat(2,1fr)}
+  .audit-cols{grid-template-columns:1fr}
+  .weeks-grid{grid-template-columns:repeat(2,1fr)}
+  .timeline{grid-template-columns:1fr;gap:1.5rem}
+  .timeline::before{display:none}
+  .vi-typo{grid-template-columns:1fr}
+  .vi-mood{grid-template-columns:repeat(3,1fr)}
+  .vi-palette{flex-wrap:wrap}
+  .vi-swatch{min-width:33%;height:60px}
+  .q-hrh{grid-column:span 1}
+  .side-nav{display:none}
+  .is-not{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  section{padding:3rem 1.2rem}
+  .opp-grid,.cv-grid,.money-grid,.series-grid{grid-template-columns:1fr}
+  .weeks-grid{grid-template-columns:1fr}
+  .audit-stats{grid-template-columns:1fr 1fr}
+  .vi-mood{grid-template-columns:repeat(2,1fr)}
+  .hero-brand{font-size:2.5rem}
+  .pillar-card{grid-template-columns:70px 1fr;gap:1rem;padding:1rem 1.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Side Navigation -->
+<nav class="side-nav" id="sideNav">
+  <a href="#hero" data-section="hero"><span class="tooltip">Home</span></a>
+  <a href="#manifesto" data-section="manifesto"><span class="tooltip">Manifesto</span></a>
+  <a href="#curator" data-section="curator"><span class="tooltip">Danielle</span></a>
+  <a href="#opportunity" data-section="opportunity"><span class="tooltip">Why Now</span></a>
+  <a href="#audit" data-section="audit"><span class="tooltip">Audit</span></a>
+  <a href="#positioning" data-section="positioning"><span class="tooltip">Positioning</span></a>
+  <a href="#consumer" data-section="consumer"><span class="tooltip">Value</span></a>
+  <a href="#identity" data-section="identity"><span class="tooltip">Identity</span></a>
+  <a href="#pillars" data-section="pillars"><span class="tooltip">Pillars</span></a>
+  <a href="#platforms" data-section="platforms"><span class="tooltip">Strategy</span></a>
+  <a href="#thirty" data-section="thirty"><span class="tooltip">30 Days</span></a>
+  <a href="#roadmap" data-section="roadmap"><span class="tooltip">Growth</span></a>
+  <a href="#money" data-section="money"><span class="tooltip">Revenue</span></a>
+  <a href="#series" data-section="series"><span class="tooltip">Series</span></a>
+  <a href="#closing" data-section="closing"><span class="tooltip">Close</span></a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- S1: HERO                                          -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-br"></div>
+  <svg class="botanical botanical-top-right" viewBox="0 0 300 300"><g stroke="#8B7355" fill="none" stroke-width=".8" opacity=".6"><path d="M200 10c-20 40-10 80 10 120s50 70 40 120"/><path d="M210 70c-30 10-50 5-70-10"/><path d="M215 130c-25 15-55 10-75-5"/><path d="M220 180c20 10 45 5 60-10"/><path d="M205 50c15-20 35-25 55-15"/><ellipse cx="140" cy="55" rx="15" ry="8" transform="rotate(-20 140 55)"/><ellipse cx="135" cy="120" rx="18" ry="9" transform="rotate(-15 135 120)"/><ellipse cx="280" cy="170" rx="14" ry="7" transform="rotate(15 280 170)"/><ellipse cx="260" cy="35" rx="12" ry="6" transform="rotate(10 260 35)"/></g></svg>
+  <div class="section-inner" style="text-align:center;display:flex;flex-direction:column;align-items:center">
+    <div class="reveal">
+      <svg width="140" height="35" viewBox="0 0 140 35" style="opacity:.4;margin-bottom:1rem"><path d="M70 32C52 32 40 20 22 20C13 20 5 25 0 28M70 32C88 32 100 20 118 20C127 20 135 25 140 28M70 32V3M64 10C64 10 58 6 55 3M76 10C76 10 82 6 85 3" stroke="#C8A96E" fill="none" stroke-width="1" stroke-linecap="round"/></svg>
+    </div>
+    <p class="label reveal delay-1">A Brand Playbook for</p>
+    <h1 class="hero-brand reveal delay-2">Harvest Road Homes</h1>
+    <p class="hero-tagline reveal delay-3">Where old stories meet new beginnings</p>
+    <div class="hero-line reveal delay-4"></div>
+    <p class="hero-sub reveal delay-5">Created with love for Danielle</p>
+    <p class="hero-year reveal delay-6">February 2026</p>
+    <div class="reveal delay-7" style="margin-top:2rem">
+      <svg width="90" height="22" viewBox="0 0 90 22" style="opacity:.35"><path d="M0 11H35M55 11H90M40 6L45 11L40 16M50 6L45 11L50 16" stroke="#C8A96E" fill="none" stroke-width="1" stroke-linecap="round"/></svg>
+    </div>
+  </div>
+  <div class="scroll-hint reveal delay-8">
+    <span>Scroll to explore</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- S2: MANIFESTO                                     -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="manifesto" id="manifesto">
+  <div class="section-inner" style="text-align:center;display:flex;flex-direction:column;align-items:center">
+    <p class="label reveal" style="margin-bottom:1.5rem">The Harvest Road Manifesto</p>
+    <h2 class="reveal delay-1">"We believe a home should feel like a <em>story being told</em> &mdash; not a catalog being staged.<br><br>Every weathered edge, every collected piece, every imperfect surface has <em>earned its place</em>."</h2>
+    <div class="divider reveal delay-3" style="max-width:200px;margin:2.5rem auto">
+      <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6Z" fill="none" stroke="#D4C5A9" stroke-width="1"/></svg>
+    </div>
+    <p class="reveal delay-4" style="font-size:.95rem;line-height:1.8;max-width:600px">Harvest Road Homes is where French farmhouse warmth meets English cottage charm. Where a $12 estate sale find sits next to modern linen and they look like they've always been together. This isn't about perfection &mdash; it's about <em style="color:var(--honey)">soul</em>.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- S3: THE CURATOR                                   -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="curator" id="curator">
+  <div class="section-inner">
+    <p class="label reveal">Chapter One</p>
+    <h2 class="reveal delay-1">Meet the Curator</h2>
+    <div class="curator-grid">
+      <div class="curator-text">
+        <p class="lead reveal delay-2">"She doesn't redesign other people's houses &mdash; she showcases a lifestyle where French farmhouse warmth, English cottage charm, and thoughtfully curated vintage pieces create spaces that feel like a warm exhale."</p>
+        <p class="reveal delay-3">Danielle is a <strong>tastemaker</strong> &mdash; someone who walks into an antique shop and sees what no one else sees. Who places a weathered copper pitcher next to a modern linen throw and makes it look like they've always belonged together.</p>
+        <p class="reveal delay-4">She is not a contractor. She is not a decorator-for-hire. She is a <strong>curator of cozy</strong> &mdash; and in 2026, that's exactly what millions of people are searching for.</p>
+        <div class="brand-tags reveal delay-5">
+          <span class="tag">Collected</span><span class="tag">Storied</span><span class="tag">Warm</span>
+          <span class="tag">Layered</span><span class="tag">Timeless</span><span class="tag">Inviting</span>
+          <span class="tag">Curated</span><span class="tag">Authentic</span><span class="tag">Lived-in</span>
+        </div>
+      </div>
+      <div class="curator-visual">
+        <div class="curator-quote reveal delay-3">"I believe every home should tell a story. Not a catalog story &mdash; <em>your</em> story. The French mirror your grandmother loved. The modern throw that makes it feel like <em>now</em>."</div>
+        <div class="is-not reveal delay-4">
+          <div class="is-card">
+            <h4>Harvest Road IS</h4>
+            Curated vintage + new styling<br>French farmhouse charm<br>Warm, collected interiors<br>Accessible luxury<br>Real life, beautifully lived
+          </div>
+          <div class="not-card">
+            <h4>Harvest Road IS NOT</h4>
+            Home renovation shows<br>Minimalism or modern farmhouse<br>Sterile, staged rooms<br>Unattainable fantasy<br>A retail store
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- S4: THE 2026 OPPORTUNITY                          -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="opportunity" id="opportunity">
+  <div class="section-inner">
+    <p class="label reveal">Chapter Two</p>
+    <h2 class="reveal delay-1">Why 2026 Is <em style="font-style:italic;color:var(--honey)">The</em> Year</h2>
+    <p class="reveal delay-2" style="max-width:700px;margin-top:.5rem">The market is shifting directly toward everything Harvest Road already stands for. This isn't chasing a trend &mdash; the trend is coming to <em>you</em>.</p>
+    <div class="opp-grid">
+      <div class="opp-card reveal delay-3">
+        <h3>Vintage Is the #1 Trend</h3>
+        <div class="stat">87%</div>
+        <p>of designers named "collected vintage" as the defining interior style of 2026. Floral botanicals, patina, and one-of-a-kind pieces are back in a major way.</p>
+        <div class="source">Homes &amp; Gardens, Camille Styles, Emily Henderson 2026 Trend Reports</div>
+      </div>
+      <div class="opp-card reveal delay-4">
+        <h3>Consumers Want Soul</h3>
+        <div class="stat">62%</div>
+        <p>more spent on home decor by buyers influenced by social media creators. Followers don't want catalogs &mdash; they want authentic curation from real people.</p>
+        <div class="source">Influencer Hero / Stack Influence Consumer Study 2026</div>
+      </div>
+      <div class="opp-card reveal delay-5">
+        <h3>Micro-Influencers Win</h3>
+        <div class="stat">3x</div>
+        <p>higher engagement for micro-influencers (1K-50K) vs. celebrities. Smaller, authentic accounts that feel like "friends sharing advice" drive the most purchases.</p>
+        <div class="source">GRIN / Afluencer Influencer Marketing Report 2026</div>
+      </div>
+    </div>
+    <div class="opp-insight reveal delay-6">
+      <p><strong>The insight:</strong> People are tired of "fast furniture" and sterile staged rooms. They want warmth, craftsmanship, character, and stories that unfold over time. Vintage decor delivers that in ways new furniture simply cannot. Danielle already <em>lives</em> this &mdash; she just needs to show the world.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- S5: THE HONEST AUDIT                              -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="audit" id="audit">
+  <div class="section-inner">
+    <p class="label reveal">Chapter Three</p>
+    <h2 class="reveal delay-1">The Honest Audit</h2>
+    <p class="reveal delay-2" style="margin-top:.3rem">Current state of @harvestroadhome &mdash; where we are today</p>
+    <div class="audit-stats">
+      <div class="stat-box reveal delay-3"><div class="stat-num" data-count="23">0</div><div class="stat-label">Followers</div></div>
+      <div class="stat-box reveal delay-4"><div class="stat-num" data-count="46">0</div><div class="stat-label">Posts</div></div>
+      <div class="stat-box reveal delay-5"><div class="stat-num" data-count="457">0</div><div class="stat-label">Total Likes</div></div>
+      <div class="stat-box reveal delay-6"><div class="stat-num">5.1<small style="font-size:.6em;font-weight:400">/10</small></div><div class="stat-label">Engagement</div></div>
+    </div>
+    <div class="audit-cols">
+      <div class="audit-col working reveal delay-5">
+        <h3>What's Working</h3>
+        <div class="audit-item"><span class="audit-icon">&#10003;</span><span>The vintage "No. 6" vase with ranunculus &mdash; <strong>this IS the brand</strong></span></div>
+        <div class="audit-item"><span class="audit-icon">&#10003;</span><span>Fall styling with antique dresser &amp; pumpkins &mdash; warm, collected, beautiful</span></div>
+        <div class="audit-item"><span class="audit-icon">&#10003;</span><span>Gold-framed portrait vignettes &mdash; real design eye at work</span></div>
+        <div class="audit-item"><span class="audit-icon">&#10003;</span><span>The name, the aesthetic when on-brand, the genuine taste</span></div>
+        <div class="audit-item"><span class="audit-icon">&#10003;</span><span>New York location &mdash; gold mine for antique shops &amp; estate sales</span></div>
+      </div>
+      <div class="audit-col needs-change reveal delay-6">
+        <h3>What Needs to Change</h3>
+        <div class="audit-item"><span class="audit-icon">&#10007;</span><span>Content mixes personal diary with brand &mdash; concerts, nature walks, and decor all together</span></div>
+        <div class="audit-item"><span class="audit-icon">&#10007;</span><span>Algorithm can't categorize the account &mdash; no niche signal</span></div>
+        <div class="audit-item"><span class="audit-icon">&#10007;</span><span>Captions too short &amp; generic ("So simple...but pretty")</span></div>
+        <div class="audit-item"><span class="audit-icon">&#10007;</span><span>Hashtags are generic (#beautiful, #haveagreatday) not niche</span></div>
+        <div class="audit-item"><span class="audit-icon">&#10007;</span><span>No face-to-camera content &mdash; accounts with face grow 3x faster</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- S6: BRAND POSITIONING                             -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="positioning" id="positioning">
+  <div class="section-inner">
+    <p class="label reveal">Chapter Four</p>
+    <h2 class="reveal delay-1">Where Harvest Road Sits</h2>
+    <p class="reveal delay-2" style="max-width:700px;margin-top:.3rem">The home decor influencer space is massive &mdash; but there's a clear gap that Harvest Road fills perfectly.</p>
+    <div class="pos-map">
+      <div class="pos-quadrant q-hrh reveal delay-3">
+        <h3>Harvest Road Homes &mdash; The Gap</h3>
+        <p style="font-size:.88rem;line-height:1.7;color:var(--charcoal)"><strong>Vintage + New, styled by a real person in a real home.</strong> Not a million-dollar renovation. Not a retail store. Not staged perfection. The warm middle ground where French farmhouse meets English cottage, where a $8 thrift find sits next to a Target lamp and it all makes sense.</p>
+        <p style="margin-top:.6rem;font-size:.85rem;font-style:italic;color:var(--honey)">This space is shockingly underserved at the micro-influencer level.</p>
+      </div>
+      <div class="pos-quadrant q-others reveal delay-4">
+        <h3>Big Renovation Accounts</h3>
+        <p>@joannagaines, @studiomcgee</p>
+        <ul><li>Massive budgets, full house renos</li><li>Aspirational but not replicable</li><li>Brand deals, product lines</li></ul>
+      </div>
+      <div class="pos-quadrant q-others reveal delay-5">
+        <h3>Retail/Product Accounts</h3>
+        <p>@antiquefarmhouse, @potterybarn</p>
+        <ul><li>Selling products, not lifestyle</li><li>No personal story or face</li><li>Transactional relationship</li></ul>
+      </div>
+      <div class="pos-quadrant q-others reveal delay-6">
+        <h3>Pure Vintage/Thrift</h3>
+        <p>@thriftedabode, @goodwillfinds</p>
+        <ul><li>Focused on the hunt, not the styling</li><li>Less refined aesthetic</li><li>Missing the "mix old + new" angle</li></ul>
+      </div>
+      <div class="pos-quadrant q-others reveal delay-7">
+        <h3>Modern Farmhouse</h3>
+        <p>@lizmariegalvan, @ourfauxfarmhouse</p>
+        <ul><li>More "modern" than vintage</li><li>Less French/English cottage influence</li><li>Different aesthetic lane entirely</li></ul>
+      </div>
+    </div>
+    <div class="pos-statement reveal delay-8">
+      <p>"Harvest Road is the <strong>warm, collected, story-driven</strong> voice in a space dominated by either massive budgets or pure thrift. That's the gap &mdash; and it's wide open."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- S7: CONSUMER VALUE                                -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="consumer-value" id="consumer">
+  <div class="section-inner">
+    <p class="label reveal">Chapter Five</p>
+    <h2 class="reveal delay-1">Why People Will Follow</h2>
+    <p class="reveal delay-2" style="color:var(--wheat);max-width:700px;margin-top:.3rem">Every successful brand answers one question: <em style="color:var(--honey)">"What do I get from following this person?"</em></p>
+    <div class="cv-grid">
+      <div class="cv-card reveal delay-3">
+        <span class="cv-icon">&#127968;</span>
+        <h3>Achievable Inspiration</h3>
+        <p>Followers see styled spaces they can actually recreate. No $50K budgets needed. Real rooms, real prices, real results.</p>
+        <span class="cv-hook">"If she found that for $12, I can too."</span>
+      </div>
+      <div class="cv-card reveal delay-4">
+        <span class="cv-icon">&#128270;</span>
+        <h3>The Treasure Hunt</h3>
+        <p>Estate sales, thrift stores, marketplace finds. Followers live vicariously through the hunt and learn to spot their own treasures.</p>
+        <span class="cv-hook">"She just found THAT at Goodwill?!"</span>
+      </div>
+      <div class="cv-card reveal delay-5">
+        <span class="cv-icon">&#127912;</span>
+        <h3>Design Education</h3>
+        <p>How to mix eras, style a vignette, spot quality antiques. Save-worthy content that positions Danielle as the expert.</p>
+        <span class="cv-hook">"I never knew WHY some things look right together."</span>
+      </div>
+      <div class="cv-card reveal delay-6">
+        <span class="cv-icon">&#10084;&#65039;</span>
+        <h3>Emotional Connection</h3>
+        <p>Stories behind the pieces. Grandmother's mirror. The estate sale find that made her cry. People follow people, not feeds.</p>
+        <span class="cv-hook">"Her posts feel like sitting with a friend."</span>
+      </div>
+      <div class="cv-card reveal delay-7">
+        <span class="cv-icon">&#127807;</span>
+        <h3>Sustainable Living</h3>
+        <p>Vintage IS sustainable. In 2026, conscious consumers seek creators who prove you don't need to buy new to live beautifully.</p>
+        <span class="cv-hook">"Beautiful AND better for the planet."</span>
+      </div>
+      <div class="cv-card reveal delay-8">
+        <span class="cv-icon">&#128171;</span>
+        <h3>Permission to Be Imperfect</h3>
+        <p>Not every corner is styled. The kitchen has dishes in the sink. Harvest Road says: your home can be beautiful AND lived in.</p>
+        <span class="cv-hook">"Finally, someone who gets it."</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- S8: VISUAL IDENTITY                               -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="visual-id" id="identity">
+  <div class="section-inner">
+    <p class="label reveal">Chapter Six</p>
+    <h2 class="reveal delay-1">Visual Identity</h2>
+    <p class="reveal delay-2" style="margin-top:.3rem">The colors, typography, and mood that make Harvest Road instantly recognizable</p>
+
+    <h3 class="reveal delay-3" style="margin-top:2rem;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:var(--honey)">Brand Palette</h3>
+    <div class="vi-palette reveal delay-3">
+      <div class="vi-swatch" style="background:#F7F3ED"><span style="color:#4A3728">Parchment</span></div>
+      <div class="vi-swatch" style="background:#E8E0D4"><span style="color:#4A3728">Linen</span></div>
+      <div class="vi-swatch" style="background:#D4C5A9"><span style="color:#4A3728">Wheat</span></div>
+      <div class="vi-swatch" style="background:#C8A96E"><span style="color:white">Honey</span></div>
+      <div class="vi-swatch" style="background:#8B9F7A"><span style="color:white">Sage</span></div>
+      <div class="vi-swatch" style="background:#C4765A"><span style="color:white">Terracotta</span></div>
+      <div class="vi-swatch" style="background:#D4A5A5"><span style="color:white">Blush</span></div>
+      <div class="vi-swatch" style="background:#4A3728"><span style="color:#D4C5A9">Espresso</span></div>
+    </div>
+
+    <h3 class="reveal delay-4" style="margin-top:2.5rem;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:var(--honey)">Typography</h3>
+    <div class="vi-typo reveal delay-4">
+      <div class="vi-font">
+        <div class="sample" style="font-family:var(--font-display);font-weight:700">Playfair Display</div>
+        <div class="name">Display Headlines</div>
+        <div class="use">Bold, editorial, commanding presence</div>
+      </div>
+      <div class="vi-font">
+        <div class="sample" style="font-family:var(--font-elegant);font-weight:300;font-size:1.8rem">Cormorant Garamond</div>
+        <div class="name">Elegant Labels &amp; Subheads</div>
+        <div class="use">Refined, light, French editorial feel</div>
+      </div>
+      <div class="vi-font">
+        <div class="sample" style="font-family:var(--font-script);font-size:2.5rem;color:var(--honey)">Sacramento</div>
+        <div class="name">Script Accent</div>
+        <div class="use">Warmth, personality, handwritten charm</div>
+      </div>
+    </div>
+
+    <h3 class="reveal delay-5" style="margin-top:2.5rem;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:var(--honey)">Brand Mood</h3>
+    <div class="vi-mood reveal delay-5">
+      <div class="mood-word">Collected</div>
+      <div class="mood-word">Storied</div>
+      <div class="mood-word">Layered</div>
+      <div class="mood-word">Warm</div>
+      <div class="mood-word">Imperfect</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- S9: CONTENT PILLARS                               -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="pillars" id="pillars">
+  <div class="section-inner">
+    <p class="label reveal">Chapter Seven</p>
+    <h2 class="reveal delay-1">Five Content Pillars</h2>
+    <p class="reveal delay-2" style="margin-top:.3rem">Every piece of content fits into one of these five themes</p>
+    <div class="pillar-row">
+      <div class="pillar-card reveal delay-3">
+        <div><div class="pillar-pct">30%</div><div class="pillar-name">The Find</div></div>
+        <div class="pillar-body">
+          <h3>Vintage &amp; Antique Discoveries</h3>
+          <p>Estate sales, thrift stores, marketplace scores. "Come thrifting with me" Reels, hauls with prices, before &amp; after of found pieces styled at home. <strong>Most shareable content type.</strong></p>
+          <div class="hook">"I paid $8 for this, and watch what it looks like styled..."</div>
+        </div>
+      </div>
+      <div class="pillar-card reveal delay-4">
+        <div><div class="pillar-pct">25%</div><div class="pillar-name">The Styling</div></div>
+        <div class="pillar-body">
+          <h3>Mixing Old + New in Real Time</h3>
+          <p>Vignette creation, "3 ways to style a vintage ___", seasonal refreshes. <strong>This is Danielle's superpower &mdash; the actual design eye at work.</strong></p>
+          <div class="hook">"Everyone says you can't mix old and new. Watch this."</div>
+        </div>
+      </div>
+      <div class="pillar-card reveal delay-5">
+        <div><div class="pillar-pct">20%</div><div class="pillar-name">The Home</div></div>
+        <div class="pillar-body">
+          <h3>Full Room Reveals &amp; Home Tours</h3>
+          <p>Seasonal decor changes, morning coffee in a styled kitchen, cozy evenings. <strong>Your home IS your showroom.</strong></p>
+          <div class="hook">"A slow morning in my French farmhouse kitchen..."</div>
+        </div>
+      </div>
+      <div class="pillar-card reveal delay-6">
+        <div><div class="pillar-pct">15%</div><div class="pillar-name">The Story</div></div>
+        <div class="pillar-body">
+          <h3>Personal Narrative &amp; Connection</h3>
+          <p>Danielle's journey, design philosophy, grandmother's pieces. Behind-the-scenes, Q&amp;As. <strong>People follow people, not feeds.</strong></p>
+          <div class="hook">"This mirror has been in my family for 60 years..."</div>
+        </div>
+      </div>
+      <div class="pillar-card reveal delay-7">
+        <div><div class="pillar-pct">10%</div><div class="pillar-name">The Education</div></div>
+        <div class="pillar-body">
+          <h3>Teaching &amp; Authority Building</h3>
+          <p>How to spot quality antiques, design rules, "vintage vs reproduction." <strong>Positions Danielle as the expert. Creates save-worthy content.</strong></p>
+          <div class="hook">"3 things I check before buying ANY antique..."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- S10: PLATFORM STRATEGY                            -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="platforms" id="platforms">
+  <div class="section-inner">
+    <p class="label reveal">Chapter Eight</p>
+    <h2 class="reveal delay-1">Platform Strategy</h2>
+    <p class="reveal delay-2" style="margin-top:.3rem">Instagram builds the community. TikTok brings the strangers.</p>
+    <div class="platform-tabs">
+      <div class="platform-panel reveal-left delay-3">
+        <h3>Instagram</h3>
+        <p class="platform-sub">Your curated gallery &amp; loyal community</p>
+        <p class="label" style="font-size:.7rem;margin-bottom:.5rem">2026 Algorithm Signals</p>
+        <div class="algo-row">
+          <div class="algo-item"><div class="algo-name">Watch Time</div><p>How long people watch, including replays. The #1 ranking signal.</p></div>
+          <div class="algo-item"><div class="algo-name">Sends</div><p>DM shares tell Instagram your content is worth recommending.</p></div>
+          <div class="algo-item"><div class="algo-name">Like Ratio</div><p>Likes per reach. A 1K account with 100 likes beats a 100K account with 200.</p></div>
+        </div>
+        <p class="label" style="font-size:.7rem;margin-bottom:.5rem">Weekly Content Mix</p>
+        <div class="content-mix">
+          <div class="mix-item"><span class="freq">3-4 Reels</span><span>Discovery &amp; reach (2.25x more reach than photos)</span></div>
+          <div class="mix-item"><span class="freq">1-2 Carousels</span><span>Highest engagement &amp; saves</span></div>
+          <div class="mix-item"><span class="freq">1-2 Statics</span><span>Grid aesthetic &amp; brand consistency</span></div>
+          <div class="mix-item"><span class="freq">Daily Stories</span><span>Polls, questions, behind-the-scenes</span></div>
+        </div>
+        <p class="label" style="font-size:.7rem;margin:.8rem 0 .5rem">Reel Hooks (First 3 Seconds = Everything)</p>
+        <div class="hook-list">
+          <div class="hook-item">"I paid $8 for this, and watch what it looks like styled..."</div>
+          <div class="hook-item">"Would you have walked past this at the thrift store?"</div>
+          <div class="hook-item">"Everyone says you can't mix old and new. Watch this."</div>
+          <div class="hook-item">"Here's how I turn a $5 find into the centerpiece of a room"</div>
+        </div>
+      </div>
+      <div class="platform-panel reveal-right delay-3">
+        <h3>TikTok</h3>
+        <p class="platform-sub">Where strangers discover you &amp; fall in love</p>
+        <p class="label" style="font-size:.7rem;margin-bottom:.5rem">Content Types That Go Viral</p>
+        <div class="tt-types">
+          <div class="tt-type"><h4>Come Thrift <span class="viral-badge viral-vhigh">V. High</span></h4><p>The hunt, the finds, the moment of discovery, the styled result at home.</p></div>
+          <div class="tt-type"><h4>Before &amp; After <span class="viral-badge viral-vhigh">V. High</span></h4><p>Show "after" first, cut to "before," show the process. Gets replayed.</p></div>
+          <div class="tt-type"><h4>Styling Process <span class="viral-badge viral-high">High</span></h4><p>Real-time shelf/table styling with trending sound or soft folk music.</p></div>
+          <div class="tt-type"><h4>Story Time <span class="viral-badge viral-high">High</span></h4><p>Talk to camera while arranging. Where the piece came from, what it means.</p></div>
+          <div class="tt-type"><h4>Home Tours <span class="viral-badge viral-high">High</span></h4><p>Slow pan with text overlays: "1952 brass candlesticks / Modern Target throw"</p></div>
+          <div class="tt-type"><h4>Design Tips <span class="viral-badge viral-high">High</span></h4><p>"3 things I look for at every estate sale" &mdash; text + voiceover.</p></div>
+        </div>
+        <p class="label" style="font-size:.7rem;margin:.4rem 0 .5rem">Key Rules</p>
+        <div class="content-mix">
+          <div class="mix-item"><span class="freq">5-7x/wk</span><span>TikTok rewards volume more than Instagram</span></div>
+          <div class="mix-item"><span class="freq">2-4 sec hook</span><span>40% higher completion rates with strong hooks</span></div>
+          <div class="mix-item"><span class="freq">Show face</span><span>Accounts with face-on-camera grow 3x faster</span></div>
+          <div class="mix-item"><span class="freq">No watermarks</span><span>Never repost TikToks to IG with watermarks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- S11: FIRST 30 DAYS                                -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="thirty-days" id="thirty">
+  <div class="section-inner">
+    <p class="label reveal">Chapter Nine</p>
+    <h2 class="reveal delay-1">First 30 Days</h2>
+    <p class="reveal delay-2" style="margin-top:.3rem">Week-by-week content calendar to launch the brand</p>
+    <div class="weeks-grid">
+      <div class="week-card reveal delay-3">
+        <h4>Week 1: Meet Danielle</h4>
+        <div class="day-item"><strong>Mon</strong> Origin story Reel &mdash; "Welcome to Harvest Road"</div>
+        <div class="day-item"><strong>Tue</strong> Carousel: "5 Things Always in My Home"</div>
+        <div class="day-item"><strong>Wed</strong> Home tour with vintage piece labels</div>
+        <div class="day-item"><strong>Thu</strong> Stories: "This or That" polls</div>
+        <div class="day-item"><strong>Fri</strong> TikTok: Come thrift with me</div>
+        <div class="day-item"><strong>Sat</strong> Hero shot of best vignette</div>
+        <div class="day-item"><strong>Sun</strong> TikTok: Design rule I never break</div>
+      </div>
+      <div class="week-card reveal delay-4">
+        <h4>Week 2: Show Your Eye</h4>
+        <div class="day-item"><strong>Mon</strong> "$12 thrift find" before/after Reel</div>
+        <div class="day-item"><strong>Tue</strong> Carousel: "The 70/30 Rule"</div>
+        <div class="day-item"><strong>Wed</strong> Real-time shelf styling video</div>
+        <div class="day-item"><strong>Thu</strong> Stories: Q&amp;A about your home</div>
+        <div class="day-item"><strong>Fri</strong> TikTok: Antique mall walkthrough</div>
+        <div class="day-item"><strong>Sat</strong> Full room reveal photo</div>
+        <div class="day-item"><strong>Sun</strong> TikTok: 3 ways to style vintage ___</div>
+      </div>
+      <div class="week-card reveal delay-5">
+        <h4>Week 3: Build Connection</h4>
+        <div class="day-item"><strong>Mon</strong> Family heirloom storytelling Reel</div>
+        <div class="day-item"><strong>Tue</strong> Carousel: Vintage vs. Reproduction</div>
+        <div class="day-item"><strong>Wed</strong> Seasonal styling &mdash; same corner, new mood</div>
+        <div class="day-item"><strong>Thu</strong> Stories: Behind-the-scenes process</div>
+        <div class="day-item"><strong>Fri</strong> Weekend thrift haul + prices</div>
+        <div class="day-item"><strong>Sat</strong> Close-up detail shot</div>
+        <div class="day-item"><strong>Sun</strong> TikTok: "Your home shouldn't look perfect"</div>
+      </div>
+      <div class="week-card reveal delay-6">
+        <h4>Week 4: Establish Rhythm</h4>
+        <div class="day-item"><strong>Mon</strong> "Antique shop just got new pieces"</div>
+        <div class="day-item"><strong>Tue</strong> Carousel: Color Rules for Mixing Eras</div>
+        <div class="day-item"><strong>Wed</strong> Complete room restyle Reel</div>
+        <div class="day-item"><strong>Thu</strong> Stories: Day-in-the-life at home</div>
+        <div class="day-item"><strong>Fri</strong> TikTok: Rating my own finds</div>
+        <div class="day-item"><strong>Sat</strong> Before &amp; After transformation</div>
+        <div class="day-item"><strong>Sun</strong> Reply to a comment with video</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- S12: GROWTH ROADMAP                               -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="roadmap" id="roadmap">
+  <div class="section-inner">
+    <p class="label reveal">Chapter Ten</p>
+    <h2 class="reveal delay-1">Growth Milestones</h2>
+    <p class="reveal delay-2" style="margin-top:.3rem">A twelve-month roadmap from seed to harvest</p>
+    <div class="timeline">
+      <div class="phase reveal delay-3">
+        <div class="phase-circle">1</div>
+        <h3>Plant the Seeds</h3>
+        <div class="period">Months 1&ndash;3</div>
+        <div class="target">500&ndash;1K</div>
+        <div class="target-label">followers per platform</div>
+        <div class="phase-tasks">
+          &#8226; Finalize brand identity &amp; grid aesthetic<br>
+          &#8226; Build 20-piece content bank<br>
+          &#8226; Post 4-5x/wk (IG) + 5-7x/wk (TT)<br>
+          &#8226; Engage with 30 niche accounts daily<br>
+          &#8226; Set up Linktree &amp; Highlight covers<br>
+          &#8226; Film the origin story Reel
+        </div>
+      </div>
+      <div class="phase reveal delay-5">
+        <div class="phase-circle">2</div>
+        <h3>Tend the Garden</h3>
+        <div class="period">Months 4&ndash;6</div>
+        <div class="target">2.5&ndash;5K</div>
+        <div class="target-label">followers per platform</div>
+        <div class="phase-tasks">
+          &#8226; Collab Reels with similar accounts<br>
+          &#8226; Launch signature series (Found Friday)<br>
+          &#8226; Apply to ShopMy for affiliate links<br>
+          &#8226; Pitch 5-10 small brands for gifted deals<br>
+          &#8226; Start email list with free styling guide<br>
+          &#8226; Daily Stories polls &amp; questions
+        </div>
+      </div>
+      <div class="phase reveal delay-7">
+        <div class="phase-circle">3</div>
+        <h3>Harvest Season</h3>
+        <div class="period">Months 7&ndash;12</div>
+        <div class="target">10&ndash;25K</div>
+        <div class="target-label">followers per platform</div>
+        <div class="phase-tasks">
+          &#8226; Pitch local magazines &amp; podcasts<br>
+          &#8226; Launch "Shop My Home" affiliate page<br>
+          &#8226; Create digital guide or mini course<br>
+          &#8226; Brand partnerships (Anthropologie, Target)<br>
+          &#8226; Host "Thrift &amp; Style" local event<br>
+          &#8226; Apply for TikTok Creator Fund
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- S13: MONETIZATION                                 -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="monetization" id="money">
+  <div class="section-inner">
+    <p class="label reveal">Chapter Eleven</p>
+    <h2 class="reveal delay-1">Monetization Roadmap</h2>
+    <p class="reveal delay-2" style="margin-top:.3rem">How Harvest Road becomes a business, not just a brand</p>
+    <div class="money-grid">
+      <div class="money-card reveal delay-3"><h4>Affiliate Links</h4><div class="money-when">Month 2+</div><div class="money-range">$200&ndash;2K/mo</div><p>ShopMy &amp; LTK &mdash; 5-25% commission on product recommendations</p></div>
+      <div class="money-card reveal delay-4"><h4>Brand Partnerships</h4><div class="money-when">Month 4+</div><div class="money-range">$500&ndash;5K/post</div><p>Gifted first, then paid. Target: Anthropologie, Pottery Barn, Threshold</p></div>
+      <div class="money-card reveal delay-5"><h4>Digital Products</h4><div class="money-when">Month 6+</div><div class="money-range">$500&ndash;3K/mo</div><p>Styling guides, presets, "How to Mix Vintage + New" course</p></div>
+      <div class="money-card reveal delay-6"><h4>Curated Collections</h4><div class="money-when">Month 9+</div><div class="money-range">Variable</div><p>Seasonal boxes, candle lines, linen collections &mdash; your own products</p></div>
+      <div class="money-card reveal delay-7"><h4>Workshops</h4><div class="money-when">Month 12+</div><div class="money-range">$1&ndash;5K/event</div><p>"Thrift &amp; Style" pop-ups, virtual workshops, antiquing tours</p></div>
+      <div class="money-card reveal delay-8"><h4>Sponsored Posts</h4><div class="money-when">Month 6+</div><div class="money-range">$250&ndash;2.5K</div><p>Dedicated brand features styled naturally in your home</p></div>
+    </div>
+    <div class="money-note reveal delay-8">
+      <h4>Start with ShopMy &rarr; Graduate to LTK</h4>
+      <p style="font-size:.85rem">ShopMy has no follower minimum with 5-25% commissions. Move to LTK at 5K+ followers for access to 40M shoppers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- S14: SIGNATURE SERIES                             -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="series" id="series">
+  <div class="section-inner">
+    <p class="label reveal">Chapter Twelve</p>
+    <h2 class="reveal delay-1">Signature Series</h2>
+    <p class="reveal delay-2" style="margin-top:.3rem">Recurring content that becomes synonymous with Harvest Road</p>
+    <div class="series-grid">
+      <div class="series-card reveal delay-3">
+        <div class="series-icon">&#128270;</div>
+        <h4>Found Friday</h4>
+        <div class="series-freq">Weekly &mdash; Both Platforms</div>
+        <p>This week's discoveries: thrift stores, estate sales, marketplace. Show the hunt, the price, and the styled result.</p>
+      </div>
+      <div class="series-card reveal delay-4">
+        <div class="series-icon">&#10024;</div>
+        <h4>Style It Sunday</h4>
+        <div class="series-freq">Weekly &mdash; Both Platforms</div>
+        <p>One piece, three completely different ways. Shows range, creativity, and teaches the audience.</p>
+      </div>
+      <div class="series-card reveal delay-5">
+        <div class="series-icon">&#129309;</div>
+        <h4>Old Meets New</h4>
+        <div class="series-freq">Bi-weekly &mdash; Both Platforms</div>
+        <p>The signature concept. Intentionally pair vintage with something brand new and show why they work.</p>
+      </div>
+      <div class="series-card reveal delay-6">
+        <div class="series-icon">&#128176;</div>
+        <h4>The $20 Challenge</h4>
+        <div class="series-freq">Monthly &mdash; TikTok</div>
+        <p>Style a complete vintage vignette for under $20. Proves great design doesn't require great wealth.</p>
+      </div>
+      <div class="series-card reveal delay-7">
+        <div class="series-icon">&#127968;</div>
+        <h4>Room of the Month</h4>
+        <div class="series-freq">Monthly &mdash; Instagram</div>
+        <p>Deep dive: every piece, every story, every design decision. The most save-worthy content.</p>
+      </div>
+      <div class="series-card reveal delay-8">
+        <div class="series-icon">&#128214;</div>
+        <h4>Estate Sale Diaries</h4>
+        <div class="series-freq">Bi-weekly &mdash; TikTok</div>
+        <p>Full estate sale experience from pulling up to the haul reveal. Vicarious treasure hunting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- S15: CLOSING                                      -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="closing" id="closing">
+  <div class="corner corner-tl" style="position:absolute;top:3rem;left:3rem;width:100px;height:100px;border-top:2px solid var(--honey);border-left:2px solid var(--honey);opacity:.08"></div>
+  <div class="corner corner-br" style="position:absolute;bottom:3rem;right:3rem;width:100px;height:100px;border-bottom:2px solid var(--honey);border-right:2px solid var(--honey);opacity:.08"></div>
+  <div class="section-inner" style="text-align:center;display:flex;flex-direction:column;align-items:center">
+    <div class="reveal">
+      <svg width="140" height="35" viewBox="0 0 140 35" style="opacity:.35;margin-bottom:1.5rem"><path d="M70 32C52 32 40 20 22 20C13 20 5 25 0 28M70 32C88 32 100 20 118 20C127 20 135 25 140 28M70 32V3M64 10C64 10 58 6 55 3M76 10C76 10 82 6 85 3" stroke="#C8A96E" fill="none" stroke-width="1" stroke-linecap="round"/></svg>
+    </div>
+    <div class="closing-quote reveal delay-2">
+      "The <em>talent</em> is already there.<br>
+      The <em>eye</em> is already there.<br>
+      The <em>taste</em> is already there.<br><br>
+      Now let's let the world see it."
+    </div>
+    <div class="hero-line reveal delay-4" style="margin:2rem auto"></div>
+    <div style="font-size:2.5rem;opacity:.3;color:var(--blush);margin:.5rem 0" class="reveal delay-5">&#9825;</div>
+    <div class="closing-from reveal delay-6">With all my love, Alex</div>
+    <div class="closing-sub reveal delay-7">This is just the beginning of Harvest Road.</div>
+    <div class="reveal delay-8" style="margin-top:2.5rem">
+      <svg width="90" height="22" viewBox="0 0 90 22" style="opacity:.3"><path d="M0 11H35M55 11H90M40 6L45 11L40 16M50 6L45 11L50 16" stroke="#C8A96E" fill="none" stroke-width="1" stroke-linecap="round"/></svg>
+    </div>
+    <p class="closing-est reveal delay-8">HARVEST ROAD HOMES &bull; EST. 2026</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- JAVASCRIPT                                        -->
+<!-- ═══════════════════════════════════════════════════ -->
+<script>
+// ─── Intersection Observer for Scroll Animations ───
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+
+// ─── Scroll Progress Bar ───
+const progressBar = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  progressBar.style.width = progress + '%';
+}, { passive: true });
+
+// ─── Side Nav Active State ───
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.side-nav a');
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.section === id);
+      });
+    }
+  });
+}, { threshold: 0.3 });
+sections.forEach(s => navObserver.observe(s));
+
+// ─── Animated Counters ───
+const counters = document.querySelectorAll('[data-count]');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.count);
+      if (el.dataset.counted) return;
+      el.dataset.counted = 'true';
+      let current = 0;
+      const step = Math.max(1, Math.floor(target / 40));
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = current;
+      }, 30);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterObserver.observe(c));
+
+// ─── Smooth anchor scroll ───
+document.querySelectorAll('.side-nav a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
